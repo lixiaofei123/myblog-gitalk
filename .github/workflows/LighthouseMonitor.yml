@@ -11,12 +11,22 @@ on:
 jobs:
   check_traffic_package: 
     runs-on: ubuntu-latest
+    outputs:
+      instances: ${{ steps.get_instance_list.outputs }}
     steps:
       - name: get instance list
+        id: get_instance_list
         uses: docker://mrlee326/lhbin
         with: 
           args: list
         env: 
           SECRET_ID: ${{ secrets.LIGHTHOUSE_SECRET_ID }}
           SECRET_KEY:  ${{ secrets.LIGHTHOUSE_SECRET_KEY }}
+      - name: check traffic packages
+        uses: docker://mrlee326/lhbin
+  job2:
+    runs-on: ubuntu-latest
+    needs: check_traffic_package
+    steps:
+      - run: echo ${{needs.check_traffic_package.outputs.instances}}
       
