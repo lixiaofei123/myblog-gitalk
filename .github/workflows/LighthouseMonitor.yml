@@ -9,7 +9,7 @@ on:
   workflow_dispatch:
 
 jobs:
-  check_traffic_package: 
+  list_all_instances: 
     runs-on: ubuntu-latest
     outputs:
       instances: ${{ steps.get_instance_list.outputs }}
@@ -22,11 +22,9 @@ jobs:
         env: 
           SECRET_ID: ${{ secrets.LIGHTHOUSE_SECRET_ID }}
           SECRET_KEY:  ${{ secrets.LIGHTHOUSE_SECRET_KEY }}
-      - name: check traffic packages
-        uses: docker://mrlee326/lhbin
-  job2:
+  check_traffic_packages:
     runs-on: ubuntu-latest
-    needs: check_traffic_package
+    needs: list_all_instances
     steps:
-      - run: echo ${{needs.check_traffic_package.outputs.instances}}
+      - run: echo ${{needs.list_all_instances.outputs.instances}}
       
