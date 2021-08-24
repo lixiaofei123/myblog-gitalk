@@ -18,5 +18,5 @@ jobs:
           args: list
         env: 
           SECRET_ID: ${{ secrets.LIGHTHOUSE_SECRET_ID }}
-          SECRET_KEY:  ${{ secrets.LIGHTHOUS_ESECRET_KEY }}
+          SECRET_KEY:  ${{ secrets.LIGHTHOUSE_SECRET_KEY }}
       
