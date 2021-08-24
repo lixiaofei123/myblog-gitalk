@@ -13,7 +13,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: get instance list
-        uses: mrlee326/lhbin
+        uses: docker://mrlee326/lhbin
         with: 
           args: list
         env: 
